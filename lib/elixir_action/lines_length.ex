@@ -7,9 +7,14 @@ defmodule ElixirAction.LinesLength do
     from the file voyage.txt
     """
   def lines_length!(path) do
-    File.stream!(path)
+    path
+    |> filtered_lines!()
+    |> Enum.map(&String.length/1)
+  end
+
+  defp filtered_lines!(path) do
+    path
+    |> File.stream!()
     |> Stream.map(&String.trim_trailing(&1, "\n"))
-    |> Stream.with_index()
-    # TODO: ran out of time, but perform transformations, then implement something like Enum.each(fn {line, index} -> IO.puts())
   end
 end

@@ -1,4 +1,6 @@
 defmodule TodoList do
+  require ToDoServer
+
   defstruct next_id: 1, entries: %{}
 
   require ToDoServer
